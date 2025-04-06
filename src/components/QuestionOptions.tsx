@@ -83,7 +83,7 @@ export const QuestionOptions: React.FC<QuestionOptionsProps> = ({ options }) => 
       singleLine.className = 'flex flex-wrap gap-4';
       tempContainer.appendChild(singleLine);
 
-      options.forEach((option, index) => {
+      options.forEach((option) => {
         const optionEl = document.createElement('div');
         optionEl.className = 'inline-flex items-center';
         const sourceEl = container.querySelector(`[data-option-id="${option.id}"]`);
@@ -127,6 +127,7 @@ export const QuestionOptions: React.FC<QuestionOptionsProps> = ({ options }) => 
 
         doubleLine.appendChild(row);
         maxDoubleWidth = Math.max(maxDoubleWidth, row.offsetWidth);
+        console.log ("maxDoubleWidth", maxDoubleWidth);
       }
 
       document.body.removeChild(tempContainer);
@@ -134,7 +135,7 @@ export const QuestionOptions: React.FC<QuestionOptionsProps> = ({ options }) => 
       // Determine display style based on measurements
       if (singleLineWidth <= containerWidth) {
         setDisplayStyle('single');
-      } else if (maxDoubleWidth <= containerWidth) {
+      } else if (maxDoubleWidth + 9 <= containerWidth) {
         setDisplayStyle('double');
       } else {
         setDisplayStyle('stacked');
